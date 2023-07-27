@@ -1,38 +1,133 @@
-.App {
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* basic setup */
+
+#root {
+  background-color: black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+/* container for content */
+#container {
+  perspective: 1200px;
+  width: 80%;
+  height: 100%;
+  margin: auto;
+
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* container for the container used purely for return page to full view */
+#returnContainer {
+  height: 100%;
+  width: 100%;
+
+  font-size: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.menuVis #returnContainer {
+  pointer-events: none;
 }
+
+
+/* the 'container' for the page */
+#content {
+  height: 100%;
+  width: 100%;
+  transition-duration: 300ms;
+  
+  background-color: black;
+}
+
+
+#content.menuVis {
+  transform-origin: 0 50%;
+  display: block;
+  position: absolute;
+  transform:  translateZ(-150px) translateY(0) rotateY(45deg) translateX(-100px);
+  transition-duration: 300ms;
+
+  border: 20px darkcyan solid;
+
+}
+
+#content.menuVis:hover {
+  cursor: pointer;
+}
+
+
+/* the hamburger menu */
+#hamborg {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+}
+
+#hamborg:hover {
+  cursor: pointer;
+  color: cyan;
+}
+
+
+/* page menu */
+#menu {
+  position: fixed;
+  top: 30%;
+  right: 15%;
+  transition-duration: 300ms;
+
+  font-size: 45px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  color: white;
+  z-index: 1;
+}
+
+
+#menu.menuInvis {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#menu.menuVis {
+  opacity: 1;
+}
+
+.menuItem {
+  cursor: pointer;
+}
+
+.selected {
+  color: white;
+}
+
+.unSelected {
+  -webkit-text-stroke: 1px white;
+  color: rgba(0,0,0,0);
+}
+
+
+
+
+
+
+
+
+/* helpful links */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transforms/Using_CSS_transforms */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/transform */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/perspective */
+/* translateZ(-1800px) translateX(-50%) rotateY(45deg) */
